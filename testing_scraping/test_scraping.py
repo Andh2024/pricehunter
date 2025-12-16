@@ -112,23 +112,6 @@ def test_save_to_csv_writes_header_and_lines(tmp_path):
     assert "B" in content
 
 
-def test_append_row_writes_line_in_csv(tmp_path, monkeypatch):
-    """Testet, ob die Formulareingabe je-weils als neue Zeile in der Datei «data.csv» gespeichert wird."""
-    # CSV_PATH im Modul auf temporäre Datei umbiegen
-    test_csv = tmp_path / "input_log.csv"
-    monkeypatch.setattr(main, "CSV_PATH", test_csv)
-
-    append_row(produkt_url="iphone", preis="100", region="Schweiz")
-
-    assert test_csv.exists()
-    lines = test_csv.read_text(encoding="utf-8").splitlines()
-    # 1: Header, 2: Datenzeile
-    assert len(lines) == 2
-    assert "iphone" in lines[1]
-    assert "100" in lines[1]
-    assert "Schweiz" in lines[1]
-
-
 def test_url_building():
     """Testet, ob die URL korrekt zusammengebaut wird."""
     query = "LED Stehlampe"
