@@ -604,12 +604,15 @@ def run_scrape(query: str, preis: str) -> List[Dict]:
             logger.debug("WebDriver konnte nicht sauber geschlossen werden.")
 
 
-# ----------------------------- Jinja-Filter ----------------------------- #
-@app.template_filter("chf")
+# ----------------------------- Jinja-Filter  ----------------------------- #
+
+# Die chf_filter-Funktion bietet keinen Mehrwert, wurde aufgrund der Nachvollziehbarkeit nicht komplett entfernt.
+
+""" @app.template_filter("chf")
 def chf_filter(value):
-    """
-    Formatiert Zahlen als Schweizer Franken, z. B. CHF 9'000.
-    """
+
+   # Formatiert Zahlen als Schweizer Franken, z. B. CHF 9'000.
+   
     try:
         digits = "".join(ch for ch in str(value) if ch.isdigit())
         if not digits:
@@ -619,6 +622,7 @@ def chf_filter(value):
         return f"CHF {formatted}"
     except Exception:
         return value
+ """
 
 
 # ----------------------------- Routes ----------------------------- #
